@@ -1,0 +1,15 @@
+services:
+- type: web
+  name: line-bot-jackyh1999
+  env: python
+  repo: https://github.com/CheesyPicodon/ncu-line-bot.git
+  buildCommand: pip install gunicorn -r requirements.txt
+  startCommand: gunicorn line_bot:app
+  plan: free
+  autoDeploy: false
+  envVars:
+  - key: LINE_CHANNEL_ACCESS_TOKEN
+    sync: false
+  - key: LINE_CHANNEL_SECRET
+    sync: false
+
