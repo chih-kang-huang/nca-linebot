@@ -41,7 +41,7 @@ admins = [
     'U0689f87646c44772528af8b2b4405117', # 洪梓彧
     'Ue8f9f131ad9ce7a424ec19b1fd82b076', # 張晉源
     'Ua59365fbb102cc87cc9781390c48c5f9', # 曾國豪
-    'U8121ae62615da918a7fa77db735dbf38', # 黃治綱
+    'U8ff33cad30112b82f195d530f98dcabb', # 黃治綱
     'Uad0875dc50aa4eb10c573534b9b1e1ac', # 鄭承祐
 ]
 groups = [
