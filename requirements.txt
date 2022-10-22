@@ -1,6 +1,6 @@
 dj-database-url
 dj-static
-django
+django>=3.2.16
 Flask
 Flask-Cors
 future
