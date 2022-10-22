@@ -7,8 +7,8 @@ Created on Thu Jul 23 15:50:24 2020
 version: 4.0
 """
 
-import os
 from __future__ import unicode_literals
+import os
 from flask import Flask, request, abort, render_template
 from linebot import LineBotApi, WebhookHandler
 from linebot.exceptions import InvalidSignatureError
