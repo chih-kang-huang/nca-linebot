@@ -23,8 +23,10 @@ app = Flask(__name__)
 # 變數
 
 # 設定api, webhook, app name
-line_bot_api = LineBotApi('KbUSP5ShwG5gziWRdy3niYUieAZaYlDc2YMW1HB3Ao05YRm+DKUar29lK0lfqjeMqzLRm1MLALf/R4jIV/k+98YxIR40SryCI8qsokVBe31heMMafyPQSI89odk42Ts1dD9b35gyPMCkOhHEGp+M/wdB04t89/1O/w1cDnyilFU=')
-handler = WebhookHandler('b33a01e1e548c7b39a732d62245e1d36')
+channel_secret = os.environ.get('LINE_CHANNEL_SECRET')
+channel_access_token = os.environ.get('LINE_CHANNEL_ACCESS_TOKEN')
+line_bot_api = LineBotApi(channel_access_token)
+handler = WebhookHandler(channel_secret)
 app_name = 'eatwhat-in-ncu'
 
 # 管理員、可用群組、餐廳名單
