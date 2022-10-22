@@ -23,8 +23,11 @@ app = Flask(__name__)
 # 變數
 
 # 設定api, webhook, app name
-line_bot_api = LineBotApi('KbUSP5ShwG5gziWRdy3niYUieAZaYlDc2YMW1HB3Ao05YRm+DKUar29lK0lfqjeMqzLRm1MLALf/R4jIV/k+98YxIR40SryCI8qsokVBe31heMMafyPQSI89odk42Ts1dD9b35gyPMCkOhHEGp+M/wdB04t89/1O/w1cDnyilFU=')
-handler = WebhookHandler('b33a01e1e548c7b39a732d62245e1d36')
+line_bot_api = LineBotApi('UWrb2+l6MCjZ936m2lO6/gnKnqp33cbfp9ObqCS2z4DvMkWlJUJ/9fwfQCRpL/HOjhmBt0w8iR/Pp7MPTgRcgZvEmXUfKq2bfFge18pHH8+RterCBuuEiikERe1MNuVwALaocXSJJciqt4xk4R/xNQdB04t89/1O/w1cDnyilFU=')
+handler = WebhookHandler('4276ef11e1159871ffc6e684e9165857')
+
+
+
 app_name = 'eatwhat-in-ncu'
 
 # 管理員、可用群組、餐廳名單
@@ -40,6 +43,7 @@ admins = [
     'Ua59365fbb102cc87cc9781390c48c5f9', # 曾國豪
     'U8121ae62615da918a7fa77db735dbf38', # 黃治綱
     'Uad0875dc50aa4eb10c573534b9b1e1ac', # 鄭承祐
+    'U8ff33cad30112b82f195d530f98dcabb', # 黃治綱admin
 ]
 groups = [
     'Cf4a08527ed49eab9d2cf53a8b0309cf0', # 午餐群組
