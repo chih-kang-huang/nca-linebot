@@ -48,7 +48,7 @@ groups = [
     'Cf4a08527ed49eab9d2cf53a8b0309cf0', # 午餐群組
     'Ce6071d5887fd879bc620143fce3c8382', # 測試群組
     'C49243ad433dd8bd975340c6a83207c84', # group id test
-    'Cd750a053f8f5986451cf0f6c7b1d40b1', # group id test2
+    'Ca9396f3333d4933d121e3d060959b5a0', 
 ]
 restaurants = [
     '大盛', '六星', '日日佳', '甲一', '皇上皇',
