@@ -18,6 +18,9 @@ import random
 import order_lib
 import urllib.request
 
+# Custom modules
+import database as db 
+
 app = Flask(__name__)
 
 
@@ -190,4 +193,5 @@ def handle_message(event):
 
 # main func
 if __name__ == '__main__':
+    db.fetchTable2Dataframe('Admin')
     app.run()
