@@ -19,7 +19,8 @@ import order_lib
 import urllib.request
 
 # Custom modules
-import database as db 
+import data
+#import database as db 
 
 app = Flask(__name__)
 
@@ -35,17 +36,17 @@ app_name = 'eatwhat-in-ncu'
 
 # 管理員、可用群組、餐廳名單
 admins = [
-    'Uefa7580b75912cf5cbd1be6dba8dafbe', # 洪仲杰
-    # 'U75851bf4cd33d189464170b50df30ee8', # 陳宜祥
-    'U45eac4b2d3598d5bb9ee33cee0518d45', # 蕭崇聖
-    'U3ff60662d9e6b90835aa52fa8cfb6ef5', # 賴冠鏵
-    'U0772fe2a09529c65b7a7c0163a92feda', # 林俊宇
-    'Ua96931bfef5d06d91250f883559a0750', # 陳怡誠
-    'U0689f87646c44772528af8b2b4405117', # 洪梓彧
-    'Ue8f9f131ad9ce7a424ec19b1fd82b076', # 張晉源
-    'Ua59365fbb102cc87cc9781390c48c5f9', # 曾國豪
-    'U8ff33cad30112b82f195d530f98dcabb', # 黃治綱
-    'Uad0875dc50aa4eb10c573534b9b1e1ac', # 鄭承祐
+    # 'Uefa7580b75912cf5cbd1be6dba8dafbe', # 洪仲杰
+    # # 'U75851bf4cd33d189464170b50df30ee8', # 陳宜祥
+    # 'U45eac4b2d3598d5bb9ee33cee0518d45', # 蕭崇聖
+    # 'U3ff60662d9e6b90835aa52fa8cfb6ef5', # 賴冠鏵
+    # 'U0772fe2a09529c65b7a7c0163a92feda', # 林俊宇
+    # 'Ua96931bfef5d06d91250f883559a0750', # 陳怡誠
+    # 'U0689f87646c44772528af8b2b4405117', # 洪梓彧
+    # 'Ue8f9f131ad9ce7a424ec19b1fd82b076', # 張晉源
+    # 'Ua59365fbb102cc87cc9781390c48c5f9', # 曾國豪
+    # 'U8ff33cad30112b82f195d530f98dcabb', # 黃治綱
+    # 'Uad0875dc50aa4eb10c573534b9b1e1ac', # 鄭承祐
 ]
 groups = [
     'Cf4a08527ed49eab9d2cf53a8b0309cf0', # 午餐群組
@@ -193,5 +194,4 @@ def handle_message(event):
 
 # main func
 if __name__ == '__main__':
-    db.fetchTable2Dataframe('Admin')
     app.run()
