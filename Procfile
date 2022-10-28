@@ -1,1 +1,1 @@
-web: gunicorn ncu-line-bot:app
+web: gunicorn app:app
