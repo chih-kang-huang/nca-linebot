@@ -1,56 +1,30 @@
 from __future__ import unicode_literals
+import os
 from flask import Flask, request, abort, render_template
 from linebot import LineBotApi, WebhookHandler
 from linebot.exceptions import InvalidSignatureError
 from linebot.models import MessageEvent, TextMessage, TextSendMessage
-
+import pandas as pd
 
 import random
 import order_lib
 
 app = Flask(__name__)
 
-
-# 變數
-
-# 設定api, webhook, app name
-#line_bot_api = LineBotApi('KbUSP5ShwG5gziWRdy3niYUieAZaYlDc2YMW1HB3Ao05YRm+DKUar29lK0lfqjeMqzLRm1MLALf/R4jIV/k+98YxIR40SryCI8qsokVBe31heMMafyPQSI89odk42Ts1dD9b35gyPMCkOhHEGp+M/wdB04t89/1O/w1cDnyilFU=')
-line_bot_api = LineBotApi('UWrb2+l6MCjZ936m2lO6/gnKnqp33cbfp9ObqCS2z4DvMkWlJUJ/9fwfQCRpL/HOjhmBt0w8iR/Pp7MPTgRcgZvEmXUfKq2bfFge18pHH8+RterCBuuEiikERe1MNuVwALaocXSJJciqt4xk4R/xNQdB04t89/1O/w1cDnyilFU=')
-#handler = WebhookHandler('b33a01e1e548c7b39a732d62245e1d36')
-handler = WebhookHandler('4276ef11e1159871ffc6e684e9165857')
-
-
+# get KEYS from your environment variable
+channel_secret = os.environ.get('LINE_CHANNEL_SECRET')
+channel_access_token = os.environ.get('LINE_CHANNEL_ACCESS_TOKEN')
+line_bot_api = LineBotApi(channel_access_token)
+handler = WebhookHandler(channel_secret)
 app_name = 'ncu-line-bot'
 
-
+#https://docs.google.com/spreadsheets/d/1OZaZYPPFPVo5EuThuyjS3STR8nMf7peSjK673_bPDHE/gviz/tq?tqx=out:csv&sheet=中一排骨
 
 # 管理員、可用群組、餐廳名單
-admins = [
-#    'Uefa7580b75912cf5cbd1be6dba8dafbe', # 洪仲杰
-#    # 'U75851bf4cd33d189464170b50df30ee8', # 陳宜祥
-#    'U45eac4b2d3598d5bb9ee33cee0518d45', # 蕭崇聖
-#    'U3ff60662d9e6b90835aa52fa8cfb6ef5', # 賴冠鏵
-#    'U0772fe2a09529c65b7a7c0163a92feda', # 林俊宇
-#    'Ua96931bfef5d06d91250f883559a0750', # 陳怡誠
-#    'U0689f87646c44772528af8b2b4405117', # 洪梓彧
-#    'Ue8f9f131ad9ce7a424ec19b1fd82b076', # 張晉源
-#    'Ua59365fbb102cc87cc9781390c48c5f9', # 曾國豪
-    'U8121ae62615da918a7fa77db735dbf38', # 黃治綱
-    'U8ff33cad30112b82f195d530f98dcabb', # 黃治綱 test
-    'Uad0875dc50aa4eb10c573534b9b1e1ac', # 鄭承祐
-]
-groups = [
-    'Cf4a08527ed49eab9d2cf53a8b0309cf0', # 午餐群組
-    'Ce6071d5887fd879bc620143fce3c8382', # 測試群組
-    'C49243ad433dd8bd975340c6a83207c84', # group id test
-    'Ca9396f3333d4933d121e3d060959b5a0', # group id test 2
-]
-restaurants = [
-    '大盛', '六星', '日日佳', '甲一', '皇上皇',
-    '華圓', '寶多福', '小林', '月枱', '呂媽媽',
-    '佳臻', '小煮角', '中一排骨', '田園小轆', '能量小姐',
-    '開心越南',
-]
+sheet_id = os.environ.get('SHEET_ID')
+admins = pd.read_csv(f"https://docs.google.com/spreadsheets/d/{sheet_id}/gviz/tq?tqx=out:csv&sheet=admins")['idLINE'].to_list()
+groups = pd.read_csv(f"https://docs.google.com/spreadsheets/d/{sheet_id}/gviz/tq?tqx=out:csv&sheet=groups")['idLINE'].to_list()
+restaurants = pd.read_csv(f"https://docs.google.com/spreadsheets/d/{sheet_id}/gviz/tq?tqx=out:csv&sheet=restaurants")['name'].to_list()
 
 # 網域名稱、機器人使用說明
 domain_name = 'https://' + app_name + '.herokuapp.com/'

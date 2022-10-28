@@ -1,6 +1,6 @@
-# fly.toml file generated for ncu-line-bot on 2022-10-23T15:57:27+08:00
+# fly.toml file generated for test-ncu-bot on 2022-10-25T23:11:56+02:00
 
-app = "ncu-line-bot"
+app = "test-ncu-bot"
 kill_signal = "SIGINT"
 kill_timeout = 5
 processes = []
