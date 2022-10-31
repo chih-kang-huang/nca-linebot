@@ -27,7 +27,8 @@ groups = pd.read_csv(f"https://docs.google.com/spreadsheets/d/{sheet_id}/gviz/tq
 restaurants = pd.read_csv(f"https://docs.google.com/spreadsheets/d/{sheet_id}/gviz/tq?tqx=out:csv&sheet=restaurants")['name'].to_list()
 
 # 網域名稱、機器人使用說明
-domain_name = 'https://' + app_name + '.herokuapp.com/'
+# domain_name = 'https://' + app_name + '.herokuapp.com/' # heroku
+domain_name = 'https://' + app_name + '.fly.dev/' # fly.io
 description = '指令輸入格式：[指令]/[內容1]/[內容2]...\n\
 指令：說明、吃、點、取消、統計、截止、清除\n\
 詳見 https://github.com/CheesyPicodon/ncu-line-bot'
@@ -140,7 +141,7 @@ def handle_message(event):
             menu = order_lib.getMenu(restaurant)
             foods = order_lib.countOrder(orders)
             reply = order_lib.printStatistic(foods, menu)
-#            reply += ('\n' + order_lib.showDetailAsHtml(line_bot_api, orders, menu, domain_name))
+            reply += ('\n' + order_lib.showDetailAsHtml(line_bot_api, orders, menu, domain_name))
 
         # 回覆明細表
         elif command == '明細':
