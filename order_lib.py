@@ -161,6 +161,27 @@ def showDetailAsHtml(line_bot_api, orders, menu, domain_name):
         order_no += 1
     return domain_name + 'detail'
 
+def showDetailDrinkAsHtml(line_bot_api, orders, menu, domain_name):
+    if os.path.isfile(detail_path):
+        os.remove(detail_path)
+    order_no = 1
+    for order in orders:
+        try:
+            user_name = line_bot_api.get_profile(order[0]).display_name
+        except:
+            user_name = order[0]
+        food_name = menu[int(order[1])][1] 
+        food_size = str(order[2])
+        food_comment = str(order[3])
+        if food_size == 'M':
+            food_price = menu[int(order[1])][2]
+        else:
+            food_price = menu[int(order[1])][3]
+        with open(detail_path, 'a+', encoding = 'utf-8') as detailFile:
+            detailFile.write( str(order_no) + '. ' + user_name + ' / ' + food_name + ' (' + food_size + ') ' + food_comment + ' / ' + food_price + '元\n' )
+        order_no += 1
+    return domain_name + 'detail_drink'
+
 # print orders via line bot
 def printDetail(line_bot_api, orders, menu):
     order_no = 1
@@ -184,11 +205,14 @@ def printDetailDrink(line_bot_api, orders, menu):
             user_name = line_bot_api.get_profile(order[0]).display_name
         except:
             user_name = order[0]
-        food_size = (order[1])[1]
         food_name = menu[int(order[1])][1] 
-        food_comment = (order[1])[2]
-        food_price = menu[int(order[1])][2]
-        reply += ( str(order_no) + '. ' + user_name + '/' + food_name + ' ' + food_size '/' + food_comment + '/' + food_price + '元\n' )
+        food_size = str(order[2])
+        food_comment = str(order[3])
+        if food_size == 'M':
+            food_price = menu[int(order[1])][2]
+        else:
+            food_price = menu[int(order[1])][3]
+        reply += ( str(order_no) + '. ' + user_name + '/' + food_name + ' (' + food_size +')' +  ' ' + food_comment + '/' + food_price + '元\n' )
         order_no += 1
     return reply
 

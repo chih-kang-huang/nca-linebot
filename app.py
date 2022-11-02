@@ -155,6 +155,16 @@ def handle_message(event):
             reply = order_lib.printStatistic(foods, menu)
             reply += ('\n' + order_lib.showDetailAsHtml(line_bot_api, orders, menu, domain_name))
 
+
+        # 統計飲料並顯示明細表(網頁)
+        elif command == '飲統計':
+            orders = order_lib.getOrder()
+            restaurant = order_lib.getRestaurant()
+            menu = order_lib.getMenu(restaurant)
+#            foods = order_lib.countOrder(orders)
+#            reply = order_lib.printStatistic(foods, menu)
+            reply += ('\n' + order_lib.showDetailDrinkAsHtml(line_bot_api, orders, menu, domain_name))
+
         # 回覆明細表
         elif command == '明細':
             orders = order_lib.getOrder()
@@ -162,7 +172,7 @@ def handle_message(event):
             menu = order_lib.getMenu(restaurant)
             reply = order_lib.printDetail(line_bot_api, orders, menu)
 
-        # 回覆明細表
+        # 回覆明細表(飲)
         elif command == '飲明細':
             orders = order_lib.getOrder()
             restaurant = order_lib.getRestaurant()
