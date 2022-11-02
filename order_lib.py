@@ -58,11 +58,8 @@ def printDrink(restaurant):
     reply = ''
     menu = getMenu(restaurant)
     for drink in menu:
-        for i in len(drink):
-            if i >= 2:
-                content += ' ' + drink[i] 
         # no. / name / price 1 / price 2 ...etc
-        reply += ( drink[0] + '. ' + drink[1] + content + '\n' )
+        reply += ( drink[0] + '. ' + drink[1] + ' ' + drink[2] + ' ' + drink[3] + '\n' )
     return reply
 
 # check if user's input is valid
