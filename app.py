@@ -117,6 +117,14 @@ def handle_message(event):
         else:
             reply = '查無此餐廳'
 
+    elif command == '喝' and user_id in admins:
+        restaurant = parameters
+        if restaurant in restaurants:
+            order_lib.setRestaurant(restaurant)
+            reply = order_lib.printMenu(restaurant)
+        else:
+            reply = '查無此飲料店'
+
     # 清除訂餐資料
     # 需要admin權限
     elif command == '清除' and user_id in admins:

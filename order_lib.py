@@ -52,6 +52,18 @@ def printMenu(restaurant):
         reply += ( food[0] + '. ' + food[1] + ' ' + food[2] + '\n' )
     return reply
 
+
+# print a beverage's menu
+def printDrink(restaurant):
+    reply = ''
+    menu = getMenu(restaurant)
+    for drink in menu:
+        for i in len(drink):
+            if i >= 2:
+                content += ' ' + drink[i] 
+        # no. / name / price 1 / price 2 ...etc
+        reply += ( drink[0] + '. ' + drink[1] + content + '\n' )
+
 # check if user's input is valid
 def checkValidity(order):
     menu = getMenu(getRestaurant())
@@ -66,9 +78,9 @@ def addOrder(user_id, orders):
     with open(order_path, 'a+', encoding = 'utf-8') as orderFile:
         for order in orders:
             # validate parameter
-            if order.isnumeric():
+  #          if order.isnumeric():
                 orderFile.write(user_id + ',' + order + '\n')
-            else:
+  #          else:
                 return '請依照格式輸入'
     return '收到'
 
