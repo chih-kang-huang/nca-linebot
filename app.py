@@ -121,7 +121,7 @@ def handle_message(event):
         restaurant = parameters
         if restaurant in restaurants:
             order_lib.setRestaurant(restaurant)
-            reply = order_lib.printMenu(restaurant)
+            reply = order_lib.printDrink(restaurant)
         else:
             reply = '查無此飲料店'
 
