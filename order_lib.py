@@ -63,6 +63,7 @@ def printDrink(restaurant):
                 content += ' ' + drink[i] 
         # no. / name / price 1 / price 2 ...etc
         reply += ( drink[0] + '. ' + drink[1] + content + '\n' )
+    return reply
 
 # check if user's input is valid
 def checkValidity(order):
