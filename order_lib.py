@@ -90,8 +90,7 @@ def addOrderDrink(user_id, orders):
             order = order.split(',')
             # validate parameter
             if order[0].isnumeric():
-                orderFile.write(user_id + ',' + order[0] + ',' + order[1] + 
-                                ',' +order[2]+ '\n')
+                orderFile.write(user_id + ',' + order[0] + ',' + order[1] + ',' + order[2] + '\n')
             else:
                 return '請依照格式輸入'
     return '收到'
@@ -174,6 +173,22 @@ def printDetail(line_bot_api, orders, menu):
         food_name = menu[int(order[1])][1]
         food_price = menu[int(order[1])][2]
         reply += ( str(order_no) + '. ' + user_name + '/' + food_name + '/' + food_price + '元\n' )
+        order_no += 1
+    return reply
+
+def printDetailDrink(line_bot_api, orders, menu):
+    order_no = 1
+    reply = ''
+    for order in orders:
+        try:
+            user_name = line_bot_api.get_profile(order[0]).display_name
+        except:
+            user_name = order[0]
+        food_size = (order[1])[1]
+        food_name = menu[int(order[1])][1] 
+        food_comment = (order[1])[2]
+        food_price = menu[int(order[1])][2]
+        reply += ( str(order_no) + '. ' + user_name + '/' + food_name + ' ' + food_size '/' + food_comment + '/' + food_price + '元\n' )
         order_no += 1
     return reply
 

@@ -162,6 +162,13 @@ def handle_message(event):
             menu = order_lib.getMenu(restaurant)
             reply = order_lib.printDetail(line_bot_api, orders, menu)
 
+        # 回覆明細表
+        elif command == '飲明細':
+            orders = order_lib.getOrder()
+            restaurant = order_lib.getRestaurant()
+            menu = order_lib.getMenu(restaurant)
+            reply = order_lib.printDetailDrink(line_bot_api, orders, menu)
+
         # 關閉點餐
         # 需要admin權限
         elif command == '截止' and user_id in admins:
