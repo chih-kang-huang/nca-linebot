@@ -138,6 +138,10 @@ def handle_message(event):
         if command == '點':
             reply = order_lib.addOrder(user_id, parameters)
 
+        # 點餐
+        if command == '飲':
+            reply = order_lib.addOrderDrink(user_id, parameters)
+
         # 取消點餐
         elif command == '取消':
             reply = order_lib.cancelOrder(user_id, parameters)

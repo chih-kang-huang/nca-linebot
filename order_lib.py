@@ -76,9 +76,23 @@ def addOrder(user_id, orders):
     with open(order_path, 'a+', encoding = 'utf-8') as orderFile:
         for order in orders:
             # validate parameter
-  #          if order.isnumeric():
+            if order.isnumeric():
                 orderFile.write(user_id + ',' + order + '\n')
-  #          else:
+            else:
+                return '請依照格式輸入'
+    return '收到'
+
+
+def addOrderDrink(user_id, orders):
+    orders = orders.split('/')
+    with open(order_path, 'a+', encoding = 'utf-8') as orderFile:
+        for order in orders:
+            order = order.split(',')
+            # validate parameter
+            if order[0].isnumeric():
+                orderFile.write(user_id + ',' + order[0] + ',' + order[1] + 
+                                ',' +order[2]+ '\n')
+            else:
                 return '請依照格式輸入'
     return '收到'
 
