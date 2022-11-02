@@ -117,7 +117,7 @@ def handle_message(event):
         else:
             reply = '查無此餐廳'
 
-    elif command == '喝' and user_id in admins:
+    elif command == '訂' and user_id in admins:
         restaurant = parameters
         if restaurant in restaurants:
             order_lib.setRestaurant(restaurant)
@@ -138,8 +138,8 @@ def handle_message(event):
         if command == '點':
             reply = order_lib.addOrder(user_id, parameters)
 
-        # 點餐
-        if command == '飲':
+        # 點飲料
+        if command == '喝':
             reply = order_lib.addOrderDrink(user_id, parameters)
 
         # 取消點餐
