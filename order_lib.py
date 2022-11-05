@@ -13,6 +13,7 @@ restaurant_folder = 'data/restaurant/'
 beverage_folder= 'data/beverage/'
 data_path = 'data/data.json'
 order_path = 'data/order.csv'
+drink_order_path = 'data/drink_order.csv'
 detail_path = 'static/detail.txt'
 # detail_url = 'https://eatwhat-in-ncu.herokuapp.com/detail'
 
@@ -86,7 +87,7 @@ def addOrder(user_id, orders):
 
 def addOrderDrink(user_id, orders):
     orders = orders.split('/')
-    with open(order_path, 'a+', encoding = 'utf-8') as orderFile:
+    with open(drink_order_path, 'a+', encoding = 'utf-8') as orderFile:
         for order in orders:
             order = order.split(',')
             # validate parameter
@@ -118,6 +119,11 @@ def cancelOrder(user_id, cancel_orders):
 # return orders
 def getOrder():
     with open(order_path, newline = '', encoding = 'utf-8') as orderFile:
+        orders = list(csv.reader(orderFile))
+    return orders
+
+def getOrderDrink():
+    with open(drink_order_path, newline = '', encoding = 'utf-8') as orderFile:
         orders = list(csv.reader(orderFile))
     return orders
 
@@ -174,7 +180,7 @@ def showDetailDrinkAsHtml(line_bot_api, orders, menu, domain_name):
         food_name = menu[int(order[1])][1] 
         food_size = str(order[2])
         food_comment = str(order[3])
-        if food_size == 'M' or food_size == ' M' or food_size == 'M ' or food_size == '中杯':
+        if food_size in ['M', ' M', 'M ', '中杯'] :
             food_price = menu[int(order[1])][2]
         else:
             food_price = menu[int(order[1])][3]
@@ -201,6 +207,7 @@ def printDetail(line_bot_api, orders, menu):
 def printDetailDrink(line_bot_api, orders, menu):
     order_no = 1
     reply = ''
+    total_price = 0
     for order in orders:
         try:
             user_name = line_bot_api.get_profile(order[0]).display_name
@@ -215,6 +222,8 @@ def printDetailDrink(line_bot_api, orders, menu):
             food_price = menu[int(order[1])][3]
         reply += ( str(order_no) + '. ' + user_name + '/' + food_name + ' (' + food_size +')' +  ' ' + food_comment + '/' + food_price + '元\n' )
         order_no += 1
+        total_price += int(food_price)
+    reply += ('共' + str(total_price) +'元')
     return reply
 
 # remove unnecessary files

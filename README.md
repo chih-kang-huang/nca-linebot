@@ -13,4 +13,4 @@ flyctl secrets set LINE_CHANNEL_SECRET=xxxxx LINE_CHANNEL_ACCESS_TOKEN=yyyyy SHE
 You can set several secret environment variables at once and it will automatically deploy after the execution.
 
 ## Data
-Read only data are store temporarily in a [Google Sheet](https://docs.google.com/spreadsheets/d/1OZaZYPPFPVo5EuThuyjS3STR8nMf7peSjK673_bPDHE/edit#gid=0)
+<!---Read only data are store temporarily in a [Google Sheet](https://docs.google.com/spreadsheets/d/1OZaZYPPFPVo5EuThuyjS3STR8nMf7peSjK673_bPDHE/edit#gid=0) --->
