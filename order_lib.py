@@ -10,6 +10,7 @@ import csv
 import os
 
 restaurant_folder = 'data/restaurant/'
+beverage_folder= 'data/beverage/'
 data_path = 'data/data.json'
 order_path = 'data/order.csv'
 detail_path = 'static/detail.txt'
