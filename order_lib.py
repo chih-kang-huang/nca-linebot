@@ -45,6 +45,23 @@ def getMenu(restaurant):
         menu = list(csv.reader(menuFile))
         return menu
 
+# return today's beverage
+def getBeverage():
+    data = getData()
+    return data['beverage']
+
+# set today's beverage
+def setBeverage(beverage):
+    data = getData()
+    data['beverage'] = beverage
+    setData(data)
+
+# get a beverage's menu
+def getDrink(beverage):
+    with open(beverage_folder + beverage + '.csv', newline = '', encoding = 'utf-8') as menuFile:
+        menu = list(csv.reader(menuFile))
+        return menu
+
 # print a restaurant's menu
 def printMenu(restaurant):
     reply = ''
@@ -56,9 +73,9 @@ def printMenu(restaurant):
 
 
 # print a beverage's menu
-def printDrink(restaurant):
+def printDrink(beverage):
     reply = ''
-    menu = getMenu(restaurant)
+    menu = getDrink(beverage)
     for drink in menu:
         # no. / name / price 1 / price 2 ...etc
         reply += ( drink[0] + '. ' + drink[1] + ' ' + drink[2] + ' ' + drink[3] + '\n' )

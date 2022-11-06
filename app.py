@@ -106,6 +106,11 @@ def handle_message(event):
         for restaurant in restaurants:
             reply += ( restaurant + '\n' )
 
+    # 列出可提供菜單的飲料
+    elif command == '飲料':
+        for beverage in beverages:
+            reply += ( beverage+ '\n' )
+
     # 隨機選餐廳
     elif command == '抽籤':
         random_index = random.randint(1,len(restaurants))-1
@@ -122,10 +127,10 @@ def handle_message(event):
             reply = '查無此餐廳'
 
     elif command == '訂' and user_id in admins:
-        restaurant = parameters
-        if restaurant in restaurants:
-            order_lib.setRestaurant(restaurant)
-            reply = order_lib.printDrink(restaurant)
+        beverage = parameters
+        if beverage in beverages:
+            order_lib.setBeverage(beverage)
+            reply = order_lib.printDrink(beverage)
         else:
             reply = '查無此飲料店'
 
@@ -162,7 +167,7 @@ def handle_message(event):
 
         # 統計飲料並顯示明細表(網頁)
         elif command == '飲統計':
-            orders = order_lib.getOrder()
+            orders = order_lib.getOrderDrink()
             restaurant = order_lib.getRestaurant()
             menu = order_lib.getMenu(restaurant)
 #            foods = order_lib.countOrder(orders)
@@ -179,14 +184,15 @@ def handle_message(event):
         # 回覆明細表(飲)
         elif command == '飲明細':
             orders = order_lib.getOrderDrink()
-            restaurant = order_lib.getRestaurant()
-            menu = order_lib.getMenu(restaurant)
+            beverage = order_lib.getBeverage()
+            menu = order_lib.getDrink(beverage)
             reply = order_lib.printDetailDrink(line_bot_api, orders, menu)
 
         # 關閉點餐
         # 需要admin權限
         elif command == '截止' and user_id in admins:
             order_lib.setRestaurant('')
+            order_lib.setBeverage('')
 
     # 回覆訊息
     if reply:
@@ -194,4 +200,6 @@ def handle_message(event):
 
 # main func
 if __name__ == '__main__':
+#   local test
+#   order_lib.addOrderDrink("ck","喝/1,L,haha")
     app.run()
