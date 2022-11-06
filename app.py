@@ -8,6 +8,8 @@ import pandas as pd
 
 import random
 import order_lib
+import order
+import help
 
 app = Flask(__name__)
 
@@ -32,6 +34,10 @@ domain_name = 'https://' + app_name + '.fly.dev/' # fly.io
 description = '指令輸入格式：[指令]/[內容1]/[內容2]...\n\
 指令：說明、吃、點、取消、統計、截止、清除\n\
 詳見 https://github.com/CheesyPicodon/ncu-line-bot'
+
+# variables
+current_restaurant = ""
+current_beverage = ""
 
 # root
 @app.route('/')
@@ -95,7 +101,9 @@ def handle_message(event):
 
     # 使用說明
     if command == '說明':
-        reply = description
+        #reply = description
+        line_bot_api.reply_message(event.reply_token, help.helpWithCarousel())
+
 
     # 列出可提供菜單的餐廳
     elif command == '餐廳':
@@ -113,7 +121,8 @@ def handle_message(event):
         restaurant = parameters
         if restaurant in restaurants:
             order_lib.setRestaurant(restaurant)
-            reply = order_lib.printMenu(restaurant)
+            #reply = order_lib.printMenu(restaurant)
+            reply = order.createOrderFrom("r1")
         else:
             reply = '查無此餐廳'
 
@@ -187,7 +196,22 @@ def handle_message(event):
     # 回覆訊息
     if reply:
         line_bot_api.reply_message(event.reply_token, TextSendMessage(reply))
+        
 
 # main func
 if __name__ == '__main__':
+    #df = order.createOrderFrom("r1")
+    #print(df.columns)
+    #print(df)
+    #print(df.to_string())
+    #print(order.getStoreId("中一排骨"))
+    current_restaurant = "中一排骨"
+    current_beverage = "烏弄"
+    order.createOrderForm("中一排骨")
+    order.createOrderForm("烏弄")
+    order.addOrder("ck","點/1,tt/3,ext", current_beverage, current_restaurant)
+    order.addOrder("jt","喝/1/3,shahid,dd", current_beverage, current_restaurant)
+    print(order.getOrder(current_beverage,current_restaurant))
+    order.cancelOrder("ck","0",current_restaurant)
+    print(order.getOrder(current_beverage,current_restaurant))
     app.run()
