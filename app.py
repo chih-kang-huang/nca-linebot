@@ -167,11 +167,11 @@ def handle_message(event):
 
         # 統計飲料並顯示明細表(網頁)
         elif command == '飲統計':
-            orders = order_lib.getOrderDrink()
-            restaurant = order_lib.getRestaurant()
-            menu = order_lib.getMenu(restaurant)
 #            foods = order_lib.countOrder(orders)
 #            reply = order_lib.printStatistic(foods, menu)
+            orders = order_lib.getOrderDrink()
+            beverage = order_lib.getBeverage()
+            menu = order_lib.getDrink(beverage)
             reply += ('\n' + order_lib.showDetailDrinkAsHtml(line_bot_api, orders, menu, domain_name))
 
         # 回覆明細表
