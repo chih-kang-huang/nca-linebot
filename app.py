@@ -105,8 +105,8 @@ def handle_message(event):
 
     # 使用說明
     if command == '說明':
-        #reply = description
-        line_bot_api.reply_message(event.reply_token, help.helpWithCarousel())
+        reply = description
+#        line_bot_api.reply_message(event.reply_token, help.helpWithCarousel())
 
 
     # 列出可提供菜單的餐廳
@@ -211,4 +211,6 @@ def handle_message(event):
 
 # main func
 if __name__ == '__main__':
+    # local test
+    # order_lib.addOrderDrink("ck","喝/1,L,haha")
     app.run()
