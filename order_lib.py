@@ -245,8 +245,10 @@ def printDetailDrink(line_bot_api, orders, menu):
 
 # remove unnecessary files
 def clear():
-    if os.path.isfile(order_path):
+    if os.path.isfile(drink_order_path):
+        os.remove(drink_order_path)
+    elif os.path.isfile(order_path):
         os.remove(order_path)
-    if os.path.isfile(detail_path):
+    elif os.path.isfile(detail_path):
         os.remove(detail_path)
 
