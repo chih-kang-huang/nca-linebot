@@ -27,13 +27,17 @@ sheet_id = os.environ.get('SHEET_ID')
 admins = pd.read_csv(f"https://docs.google.com/spreadsheets/d/{sheet_id}/gviz/tq?tqx=out:csv&sheet=admins")['idLINE'].to_list()
 groups = pd.read_csv(f"https://docs.google.com/spreadsheets/d/{sheet_id}/gviz/tq?tqx=out:csv&sheet=groups")['idLINE'].to_list()
 restaurants = pd.read_csv(f"https://docs.google.com/spreadsheets/d/{sheet_id}/gviz/tq?tqx=out:csv&sheet=restaurants")['name'].to_list()
+beverages = pd.read_csv(f"https://docs.google.com/spreadsheets/d/{sheet_id}/gviz/tq?tqx=out:csv&sheet=beverages")['name'].to_list()
 
 # 網域名稱、機器人使用說明
 # domain_name = 'https://' + app_name + '.herokuapp.com/' # heroku
 domain_name = 'https://' + app_name + '.fly.dev/' # fly.io
 description = '指令輸入格式：[指令]/[內容1]/[內容2]...\n\
-指令：說明、吃、點、取消、統計、截止、清除\n\
-詳見 https://github.com/CheesyPicodon/ncu-line-bot'
+餐廳範例： 點/13/5/3/2\n\
+飲料範例： 喝/3,L,無糖少冰/12,M,全糖/6,中杯,半糖多冰\n\
+指令：說明、吃、點、取消、統計、截止、清除'
+# 指令：說明、吃、點、取消、統計、截止、清除\n\
+# 詳見 https://github.com/CheesyPicodon/ncu-line-bot'
 
 # variables
 current_restaurant = ""
@@ -110,6 +114,11 @@ def handle_message(event):
         for restaurant in restaurants:
             reply += ( restaurant + '\n' )
 
+    # 列出可提供菜單的飲料
+    elif command == '飲料':
+        for beverage in beverages:
+            reply += ( beverage+ '\n' )
+
     # 隨機選餐廳
     elif command == '抽籤':
         random_index = random.randint(1,len(restaurants))-1
@@ -127,10 +136,10 @@ def handle_message(event):
             reply = '查無此餐廳'
 
     elif command == '訂' and user_id in admins:
-        restaurant = parameters
-        if restaurant in restaurants:
-            order_lib.setRestaurant(restaurant)
-            reply = order_lib.printDrink(restaurant)
+        beverage = parameters
+        if beverage in beverages:
+            order_lib.setBeverage(beverage)
+            reply = order_lib.printDrink(beverage)
         else:
             reply = '查無此飲料店'
 
@@ -167,11 +176,11 @@ def handle_message(event):
 
         # 統計飲料並顯示明細表(網頁)
         elif command == '飲統計':
-            orders = order_lib.getOrder()
-            restaurant = order_lib.getRestaurant()
-            menu = order_lib.getMenu(restaurant)
 #            foods = order_lib.countOrder(orders)
 #            reply = order_lib.printStatistic(foods, menu)
+            orders = order_lib.getOrderDrink()
+            beverage = order_lib.getBeverage()
+            menu = order_lib.getDrink(beverage)
             reply += ('\n' + order_lib.showDetailDrinkAsHtml(line_bot_api, orders, menu, domain_name))
 
         # 回覆明細表
@@ -183,15 +192,16 @@ def handle_message(event):
 
         # 回覆明細表(飲)
         elif command == '飲明細':
-            orders = order_lib.getOrder()
-            restaurant = order_lib.getRestaurant()
-            menu = order_lib.getMenu(restaurant)
+            orders = order_lib.getOrderDrink()
+            beverage = order_lib.getBeverage()
+            menu = order_lib.getDrink(beverage)
             reply = order_lib.printDetailDrink(line_bot_api, orders, menu)
 
         # 關閉點餐
         # 需要admin權限
         elif command == '截止' and user_id in admins:
             order_lib.setRestaurant('')
+            order_lib.setBeverage('')
 
     # 回覆訊息
     if reply:
