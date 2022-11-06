@@ -8,6 +8,8 @@ import pandas as pd
 
 import random
 import order_lib
+import order
+import help
 
 app = Flask(__name__)
 
@@ -36,6 +38,10 @@ description = '指令輸入格式：[指令]/[內容1]/[內容2]...\n\
 指令：說明、吃、點、取消、統計、截止、清除'
 # 指令：說明、吃、點、取消、統計、截止、清除\n\
 # 詳見 https://github.com/CheesyPicodon/ncu-line-bot'
+
+# variables
+current_restaurant = ""
+current_beverage = ""
 
 # root
 @app.route('/')
@@ -99,7 +105,9 @@ def handle_message(event):
 
     # 使用說明
     if command == '說明':
-        reply = description
+        #reply = description
+        line_bot_api.reply_message(event.reply_token, help.helpWithCarousel())
+
 
     # 列出可提供菜單的餐廳
     elif command == '餐廳':
@@ -123,6 +131,8 @@ def handle_message(event):
         if restaurant in restaurants:
             order_lib.setRestaurant(restaurant)
             reply = order_lib.printMenu(restaurant)
+            #reply = order.getMenu(restaurant)
+            #order.createOrderFrom(restaurant)
         else:
             reply = '查無此餐廳'
 
@@ -197,9 +207,8 @@ def handle_message(event):
     # 回覆訊息
     if reply:
         line_bot_api.reply_message(event.reply_token, TextSendMessage(reply))
+        
 
 # main func
 if __name__ == '__main__':
-#   local test
-#   order_lib.addOrderDrink("ck","喝/1,L,haha")
     app.run()
