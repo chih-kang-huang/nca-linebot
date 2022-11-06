@@ -24,7 +24,7 @@ def helpWithCarousel():
     If there is an image, there have to be images at every cols
     """
     carousel_template = CarouselTemplate(columns=[
-        CarouselColumn(thumbnail_image_url='https://imgur.com/gallery/p2DNWk3',
+        CarouselColumn(#thumbnail_image_url='https://imgur.com/gallery/p2DNWk3',
                        title='訂', 
                        text='試試看這個範例！', 
                        actions=[
@@ -32,7 +32,7 @@ def helpWithCarousel():
                            text='指令輸入格式：[指令]/[內容1]/[內容2]...\n\
                                  指令：說明、吃、點、取消、統計、截止、清除')
         ]),
-        CarouselColumn(thumbnail_image_url='https://imgur.com/gallery/p2DNWk3',
+        CarouselColumn(#thumbnail_image_url='https://imgur.com/gallery/p2DNWk3',
                        title='來源', 
                        text='請查看：', 
                        actions=[

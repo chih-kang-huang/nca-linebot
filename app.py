@@ -210,18 +210,4 @@ def handle_message(event):
 
 # main func
 if __name__ == '__main__':
-    #df = order.createOrderFrom("r1")
-    #print(df.columns)
-    #print(df)
-    #print(df.to_string())
-    #print(order.getStoreId("中一排骨"))
-    current_restaurant = "中一排骨"
-    current_beverage = "烏弄"
-    order.createOrderForm("中一排骨")
-    order.createOrderForm("烏弄")
-    order.addOrder("ck","點/1,tt/3,ext", current_beverage, current_restaurant)
-    order.addOrder("jt","喝/1/3,shahid,dd", current_beverage, current_restaurant)
-    print(order.getOrder(current_beverage,current_restaurant))
-    order.cancelOrder("ck","0",current_restaurant)
-    print(order.getOrder(current_beverage,current_restaurant))
     app.run()

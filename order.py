@@ -8,10 +8,6 @@ import os
 import pandas as pd
 from datetime import date
 
-restaurant_folder = 'data/restaurant/'
-data_path = 'data/data.json'
-order_path = 'data/order.csv'
-detail_path = 'static/detail.txt'
 sheet_id = os.environ.get('SHEET_ID')
 
 def getStoreId(name):
@@ -40,6 +36,17 @@ def getMenu(name):
     menu = pd.DataFrame(df.iloc[:, 1:3]).to_string()
     return menu
 
+def getItemName(name, id):
+    """ 
+    :param name<string>: the name of the store
+    :param id<int>: a number
+    """
+    store_id = getStoreId(name)
+    df = pd.read_csv(f"https://docs.google.com/spreadsheets/d/{sheet_id}/gviz/tq?tqx=out:csv&sheet={store_id}")
+    assert(df.columns.to_list()[0]==name)
+    assert(len(df)>id and id >=0)
+    return df.iat[id,1]
+
 def createOrderForm(name):
     """ 
     Create a dedicated order form for a store and save it to order folder.
@@ -57,7 +64,7 @@ def createOrderForm(name):
         index=False)
     return order
 
-def addOrder(user_id, orders, current_beverage, current_restaurant):
+def addOrder(user_id, orders, current_restaurant, current_beverage):
     # Set store name
     store_name = ""
     orders = orders.split('/')
@@ -95,17 +102,39 @@ def getOrder(current_restaurant,current_beverage):
     return "點/" + current_restaurant + "\n" + df1 +\
              "\n喝/"+ current_beverage  + "\n" + df2
 
-def cancelOrder(user_id, cancel_orders, current_restaurant):
-    path_data = "data/order/order_"+current_restaurant+"_"+date.today().strftime("%b-%d-%Y")+".csv"
+def cancelOrder(user_id, cancel_orders, store_name):
+    """ 
+    Cancel all or particular order in order list.
+    :param user_id<string>: LINE ID of the user
+    :param cancel_orders<list of string>: list of order "number" depends on restaurant menu
+    :param store_name<string>: name of current store 
+    """
+    path_data = "data/order/order_"+store_name+"_"+date.today().strftime("%b-%d-%Y")+".csv"
     df = pd.read_csv(path_data)
         
     if cancel_orders:
         cancel_orders = cancel_orders.split('/')
-        new_df = df.drop(index=[int(s) for s in cancel_orders])
+        # Cancel using index in order file
+        #new_df = df.drop(index=[int(s) for s in cancel_orders])
+        # Cancel using index in menu file
+        indices = []
+        for order in cancel_orders:
+            item = -1
+            for k in range(len(df)):
+                if df.iat[k,0]==user_id and df.iat[k,1]==int(order):
+                    item = k # only select the latest commmand
+            if item != -1:
+                indices.append(item)
+        new_df = df.drop(index=indices)   
     else: # Cancel all order if the user didn´t give specification
         new_df = df.loc(df["userId"]!=user_id)
     
-    # Save data
+    # Save data (cover over the old one)
     new_df.to_csv(path_data,index=False)
 
     return '取消訂單'
+
+def clear():
+    """ 
+    TODO : Cancel all order files
+    """
