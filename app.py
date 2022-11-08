@@ -92,8 +92,8 @@ def handle_message(event):
 
     # handle command and process string
     # 字串需要包含'/'以及在指定群組才做處理
-    #if '/' not in message or group_id not in groups:
-    if '/' not in message:
+    if '/' not in message or group_id not in groups:
+    #if '/' not in message:
         return
     message = message.replace(' ','').replace('\n','').split('/',1)
     print(message)
@@ -201,8 +201,8 @@ def handle_message(event):
         # 關閉點餐
         # 需要admin權限
         elif command == '截止' and user_id in admins:
-            order_lib.setRestaurant('')
-            order_lib.setBeverage('')
+            order_lib.setRestaurant(' ')
+            order_lib.setBeverage(' ')
 
     # 回覆訊息
     if reply:

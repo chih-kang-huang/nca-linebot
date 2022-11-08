@@ -197,7 +197,7 @@ def showDetailDrinkAsHtml(line_bot_api, orders, menu, domain_name):
         food_name = menu[int(order[1])][1] 
         food_size = str(order[2])
         food_comment = str(order[3])
-        if food_size in ['M',' M','M ','中杯','中'] :
+        if food_size in ['M',' M','M ','中杯','中','m',' m','m ']:
             food_price = menu[int(order[1])][2]
         else:
             food_price = menu[int(order[1])][3]
@@ -233,7 +233,7 @@ def printDetailDrink(line_bot_api, orders, menu):
         food_name = menu[int(order[1])][1] 
         food_size = str(order[2])
         food_comment = str(order[3])
-        if food_size in ['M',' M','M ','中杯','中']:
+        if food_size in ['M',' M','M ','中杯','中','m',' m','m ']:
             food_price = menu[int(order[1])][2]
         else:
             food_price = menu[int(order[1])][3]
@@ -244,14 +244,20 @@ def printDetailDrink(line_bot_api, orders, menu):
     return reply
 
 # remove unnecessary files
+#def clear():
+#    if os.path.isfile(drink_order_path) and os.path.isfile(order_path):
+#        os.remove(drink_order_path)
+#        os.remove(order_path)
+#    elif os.path.isfile(drink_order_path):
+#        os.remove(drink_order_path)
+#    elif os.path.isfile(order_path):
+#        os.remove(order_path)
+#    elif os.path.isfile(detail_path):
+#        os.remove(detail_path)
 def clear():
-    if os.path.isfile(drink_order_path) and os.path.isfile(order_path):
+    if os.path.isfile(drink_order_path):
         os.remove(drink_order_path)
+    if os.path.isfile(order_path):
         os.remove(order_path)
-    elif os.path.isfile(drink_order_path):
-        os.remove(drink_order_path)
-    elif os.path.isfile(order_path):
-        os.remove(order_path)
-    elif os.path.isfile(detail_path):
+    if os.path.isfile(detail_path):
         os.remove(detail_path)
-
