@@ -15,7 +15,8 @@ data_path = 'data/data.json'
 order_path = 'data/order.csv'
 drink_order_path = 'data/drink_order.csv'
 detail_path = 'static/detail.txt'
-# detail_url = 'https://eatwhat-in-ncu.herokuapp.com/detail'
+drink_detail_path = 'static/drink_detail.txt'
+# detail_url = 'https://ncu-line-bot.fly.dev/detail'
 
 # return data in data.json
 def getData():
@@ -186,8 +187,8 @@ def showDetailAsHtml(line_bot_api, orders, menu, domain_name):
     return domain_name + 'detail'
 
 def showDetailDrinkAsHtml(line_bot_api, orders, menu, domain_name):
-    if os.path.isfile(detail_path):
-        os.remove(detail_path)
+    if os.path.isfile(drink_detail_path):
+        os.remove(drink_detail_path)
     order_no = 1
     for order in orders:
         try:
@@ -210,6 +211,7 @@ def showDetailDrinkAsHtml(line_bot_api, orders, menu, domain_name):
 def printDetail(line_bot_api, orders, menu):
     order_no = 1
     reply = ''
+    total_price = 0
     for order in orders:
         try:
             user_name = line_bot_api.get_profile(order[0]).display_name
@@ -219,6 +221,8 @@ def printDetail(line_bot_api, orders, menu):
         food_price = menu[int(order[1])][2]
         reply += ( str(order_no) + '. ' + user_name + '/' + food_name + '/' + food_price + '元\n' )
         order_no += 1
+        total_price += int(food_price)
+    reply += ('便當共' + str(total_price) +'元')
     return reply
 
 def printDetailDrink(line_bot_api, orders, menu):
@@ -240,7 +244,7 @@ def printDetailDrink(line_bot_api, orders, menu):
         reply += ( str(order_no) + '. ' + user_name + '/' + food_name + ' (' + food_size +')' +  ' ' + food_comment + '/' + food_price + '元\n' )
         order_no += 1
         total_price += int(food_price)
-    reply += ('共' + str(total_price) +'元')
+    reply += ('飲料共' + str(total_price) +'元')
     return reply
 
 # remove unnecessary files
