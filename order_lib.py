@@ -1,13 +1,15 @@
 # -*- coding: utf-8 -*-
 """
-Created on Thu Oct 28 15:50:24 2021
+Created on Sat Nov 5 2022
 
-@author: jacky
+@author: colleabois & cheesypicodon
 """
 
 import json
 import csv
 import os
+from datetime import date
+import pandas as pd
 
 restaurant_folder = 'data/restaurant/'
 beverage_folder= 'data/beverage/'
