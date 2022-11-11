@@ -105,8 +105,8 @@ def handle_message(event):
 
     # 使用說明
     if command == '說明':
-        reply = description
-#        line_bot_api.reply_message(event.reply_token, help.helpWithCarousel())
+#        reply = description
+        line_bot_api.reply_message(event.reply_token, help.helpWithCarousel())
 
 
     # 列出可提供菜單的餐廳
@@ -131,8 +131,8 @@ def handle_message(event):
         if restaurant in restaurants:
             order_lib.setRestaurant(restaurant)
             reply = order_lib.printMenu(restaurant)
+            #order.createOrderForm(restaurant)
             #reply = order.getMenu(restaurant)
-            #order.createOrderFrom(restaurant)
         else:
             reply = '查無此餐廳'
 
@@ -155,7 +155,8 @@ def handle_message(event):
 
         # 點餐
         if command == '點':
-            reply = order_lib.addOrder(user_id, parameters)
+            #reply = order_lib.addOrder(user_id, parameters)
+            reply = order.addOrder(user_id, parameters)
 
         # 點飲料
         if command == '喝':
@@ -164,6 +165,10 @@ def handle_message(event):
         # 取消點餐
         elif command == '取消':
             reply = order_lib.cancelOrder(user_id, parameters)
+
+        # 取消飲料
+        elif command == '飲取消':
+            reply = order_lib.cancelOrderDrink(user_id, parameters)
 
         # 統計餐點並顯示明細表(網頁)
         elif command == '統計':

@@ -8,7 +8,7 @@ import os
 import pandas as pd
 from datetime import date
 
-sheet_id = os.environ.get('SHEET_ID')
+#sheet_id = os.environ.get('SHEET_ID')
 
 def getStoreId(name):
     """ Find an the ID of the store from Google Sheet

@@ -25,11 +25,13 @@ def helpWithCarousel():
     """
     carousel_template = CarouselTemplate(columns=[
         CarouselColumn(#thumbnail_image_url='https://imgur.com/gallery/p2DNWk3',
-                       title='訂', 
+                       title='指令', 
                        text='試試看這個範例！', 
                        actions=[
-                           MessageAction(label='範例', 
+                           MessageAction(label='範例說明', 
                            text='指令輸入格式：[指令]/[內容1]/[內容2]...\n\
+                                    餐廳範例： 點/13/5/3/2\n\
+                                    飲料範例： 喝/3,L,無糖少冰/12,M,全糖/6,中杯,半糖多冰\n\
                                  指令：說明、吃、點、取消、統計、截止、清除')
         ]),
         CarouselColumn(#thumbnail_image_url='https://imgur.com/gallery/p2DNWk3',
