@@ -8,7 +8,15 @@ import os
 import pandas as pd
 from datetime import date
 
-#sheet_id = os.environ.get('SHEET_ID')
+sheet_id = os.environ.get('SHEET_ID')
+restaurant_folder = 'data/restaurant/'
+beverage_folder= 'data/beverage/'
+data_path = 'data/data.json'
+order_path = 'data/order.csv'
+drink_order_path = 'data/drink_order.csv'
+detail_path = 'static/detail.txt'
+drink_detail_path = 'static/drink_detail.txt'
+# detail_url = 'https://ncu-line-bot.fly.dev/detail'
 
 def getStoreId(name):
     """ Find an the ID of the store from Google Sheet
@@ -64,17 +72,42 @@ def createOrderForm(name):
         index=False)
     return order
 
-def addOrder(user_id, orders, current_restaurant, current_beverage):
+#def addOrder(user_id, orders, current_restaurant, current_beverage):
+#    # Set store name
+#    store_name = ""
+#    orders = orders.split('/')
+#    if orders[0] == "點":
+#        store_name = current_restaurant
+#    elif orders[0] == "喝":
+#        store_name = current_beverage
+#
+#    # Read data
+#    path_data = "data/order/order_"+store_name+"_"+date.today().strftime("%b-%d-%Y")+".csv"
+#    df = pd.read_csv(path_data)
+#  
+#    for order in orders[1:]:
+#        order = order.split(',')
+#        # Fill with blank space if not specified
+#        new_row = [user_id]+order+["" for k in range(len(df.columns)-len(order)-1)]
+#        # Add new row to the end of dataframe
+#        df.loc[len(df)] = new_row
+#
+#    # Save data
+#    df.to_csv(path_data,index=False)
+#
+#    return '收到'
+
+# add order(s) into order.csv
+def addOrder(user_id, orders):
     # Set store name
-    store_name = ""
+    path_data = ""
     orders = orders.split('/')
     if orders[0] == "點":
-        store_name = current_restaurant
+        path_data = order_path
     elif orders[0] == "喝":
-        store_name = current_beverage
+        path_data = drink_order_path
 
     # Read data
-    path_data = "data/order/order_"+store_name+"_"+date.today().strftime("%b-%d-%Y")+".csv"
     df = pd.read_csv(path_data)
   
     for order in orders[1:]:

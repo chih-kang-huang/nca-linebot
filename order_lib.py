@@ -258,7 +258,9 @@ def printDetailDrink(line_bot_api, orders, menu):
         food_name = menu[int(order[1])][1] 
         food_size = str(order[2])
         food_comment = str(order[3])
-        if food_size in ['M',' M','M ','中杯','中','m',' m','m ']:
+        if order[1] is None:
+            food_price = '100000'
+        elif food_size in ['M',' M','M ','中杯','中','m',' m','m ']:
             food_price = menu[int(order[1])][2]
         else:
             food_price = menu[int(order[1])][3]

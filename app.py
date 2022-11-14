@@ -26,8 +26,18 @@ app_name = 'ncu-line-bot'
 sheet_id = os.environ.get('SHEET_ID')
 admins = pd.read_csv(f"https://docs.google.com/spreadsheets/d/{sheet_id}/gviz/tq?tqx=out:csv&sheet=admins")['idLINE'].to_list()
 groups = pd.read_csv(f"https://docs.google.com/spreadsheets/d/{sheet_id}/gviz/tq?tqx=out:csv&sheet=groups")['idLINE'].to_list()
-restaurants = pd.read_csv(f"https://docs.google.com/spreadsheets/d/{sheet_id}/gviz/tq?tqx=out:csv&sheet=restaurants")['name'].to_list()
-beverages = pd.read_csv(f"https://docs.google.com/spreadsheets/d/{sheet_id}/gviz/tq?tqx=out:csv&sheet=beverages")['name'].to_list()
+# restaurants = pd.read_csv(f"https://docs.google.com/spreadsheets/d/{sheet_id}/gviz/tq?tqx=out:csv&sheet=restaurants")['name'].to_list()
+restaurants = [
+    '大盛', '六星', '日日佳', '甲一', '皇上皇',
+    '華圓', '寶多福', '小林', '月枱', '呂媽媽',
+    '佳臻', '小煮角', '中一排骨', '田園小轆', '能量小姐',
+    '開心越南', '兄弟', '榮興', 
+]
+# beverages = pd.read_csv(f"https://docs.google.com/spreadsheets/d/{sheet_id}/gviz/tq?tqx=out:csv&sheet=beverages")['name'].to_list()
+beverages = [
+    '可不可', '得正', '烏弄',
+]
+
 
 # 網域名稱、機器人使用說明
 # domain_name = 'https://' + app_name + '.herokuapp.com/' # heroku
@@ -155,8 +165,8 @@ def handle_message(event):
 
         # 點餐
         if command == '點':
-            #reply = order_lib.addOrder(user_id, parameters)
-            reply = order.addOrder(user_id, parameters)
+            reply = order_lib.addOrder(user_id, parameters)
+            # reply = order.addOrder(user_id, parameters)
 
         # 點飲料
         if command == '喝':
