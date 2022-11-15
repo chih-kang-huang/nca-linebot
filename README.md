@@ -1,5 +1,7 @@
 # NCU-Line-bot
 
+NCU Line Bot. A fork from github.com/jackyh1999/line_bot 
+
 ## Useful commands for deployment
 - ```flyctl launch``` launches the new app.
 - ```flyctl deploy``` to deploy the app.

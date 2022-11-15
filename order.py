@@ -100,7 +100,7 @@ def createOrderForm(name):
 # add order(s) into order.csv
 def addOrder(user_id, orders):
     # Set store name
-    path_data = ""
+    path_data = " "
     orders = orders.split('/')
     if orders[0] == "點":
         path_data = order_path
