@@ -111,7 +111,7 @@ def addOrderDrink(user_id, orders):
         for order in orders:
             order = order.split(',')
             # validate parameter
-            if len(order) == 2 and order[0].isnumeric():
+            if len(order) == 3 and order[0].isnumeric():
                 orderFile.write(user_id + ',' + order[0] + ',' + order[1] + ',' + order[2] + '\n')
             else:
                 return '請依照格式輸入'
@@ -220,10 +220,16 @@ def showDetailDrinkAsHtml(line_bot_api, orders, menu, domain_name):
         food_size = str(order[2])
         food_comment = str(order[3])
         if food_size in ['M',' M','M ','中杯','中','m',' m','m ']:
-            food_price = menu[int(order[1])][2]
+            if menu[int(order[1])][2] in ['', ' '] :
+                food_price = 100000
+            else:
+                food_price = menu[int(order[1])][2]
         else:
-            food_price = menu[int(order[1])][3]
-        with open(detail_path, 'a+', encoding = 'utf-8') as detailFile:
+            if menu[int(order[1])][3] in ['', ' '] :
+                food_price = 100000
+            else:
+                food_price = menu[int(order[1])][3]
+        with open(drink_detail_path, 'a+', encoding = 'utf-8') as detailFile:
             detailFile.write( str(order_no) + '. ' + user_name + ' / ' + food_name + ' (' + food_size + ') ' + food_comment + ' / ' + food_price + '元\n' )
         order_no += 1
     return domain_name + 'detail_drink'
@@ -260,14 +266,14 @@ def printDetailDrink(line_bot_api, orders, menu):
         food_comment = str(order[3])
         if food_size in ['M',' M','M ','中杯','中','m',' m','m ']:
             if menu[int(order[1])][2] in ['', ' '] :
-                food_price = 100000
+                food_price = str('100000')
             else:
-                food_price = menu[int(order[1])][2]
+                food_price = str(menu[int(order[1])][2])
         else:
             if menu[int(order[1])][3] in ['', ' '] :
-                food_price = 100000
+                food_price = str('100000')
             else:
-                food_price = menu[int(order[1])][3]
+                food_price = str(menu[int(order[1])][3])
         reply += ( str(order_no) + '. ' + user_name + '/' + food_name + ' (' + food_size +')' +  ' ' + food_comment + '/' + food_price + '元\n' )
         order_no += 1
         total_price += int(food_price)

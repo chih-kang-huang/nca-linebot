@@ -106,7 +106,6 @@ def callback():
 def showDetail():
     return render_template('detail.html')
 
-
 ### 主程式
 
 # decorator 判斷 event 為 MessageEvent
@@ -228,6 +227,7 @@ def handle_message(event):
             restaurant = order_lib.getRestaurant()
             menu = order_lib.getMenu(restaurant)
             reply = order_lib.printDetail(line_bot_api, orders, menu)
+            reply += ('\n' + order_lib.showDetailAsHtml(line_bot_api, orders, menu, domain_name))
 
         # 回覆明細表(飲)
         elif command == '飲明細':
@@ -235,6 +235,7 @@ def handle_message(event):
             beverage = order_lib.getBeverage()
             menu = order_lib.getDrink(beverage)
             reply = order_lib.printDetailDrink(line_bot_api, orders, menu)
+    #        reply += ('\n' + order_lib.showDetailDrinkAsHtml(line_bot_api, orders, menu, domain_name))
 
         # 關閉點餐
         # 需要admin權限
