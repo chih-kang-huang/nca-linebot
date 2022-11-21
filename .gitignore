@@ -6,4 +6,6 @@ staticfiles
 db.sqlite3
 .env
 fly.toml
-
+.*.swp
+.*.swo
+*~
