@@ -4,11 +4,11 @@ from flask import Flask, request, abort, render_template
 from linebot import LineBotApi, WebhookHandler
 from linebot.exceptions import InvalidSignatureError
 from linebot.models import MessageEvent, TextMessage, TextSendMessage
-import pandas as pd
+# import pandas as pd
 
 import random
 import order_lib
-import order
+# import order
 import help
 
 app = Flask(__name__)
@@ -24,8 +24,31 @@ app_name = 'ncu-line-bot'
 
 # 管理員、可用群組、餐廳名單
 sheet_id = os.environ.get('SHEET_ID')
-admins = pd.read_csv(f"https://docs.google.com/spreadsheets/d/{sheet_id}/gviz/tq?tqx=out:csv&sheet=admins")['idLINE'].to_list()
-groups = pd.read_csv(f"https://docs.google.com/spreadsheets/d/{sheet_id}/gviz/tq?tqx=out:csv&sheet=groups")['idLINE'].to_list()
+# admins = pd.read_csv(f"https://docs.google.com/spreadsheets/d/{sheet_id}/gviz/tq?tqx=out:csv&sheet=admins")['idLINE'].to_list()
+admins = [
+    'Uefa7580b75912cf5cbd1be6dba8dafbe', # 洪仲杰
+    # 'U75851bf4cd33d189464170b50df30ee8', # 陳宜祥
+    'U45eac4b2d3598d5bb9ee33cee0518d45', # 蕭崇聖
+    'U3ff60662d9e6b90835aa52fa8cfb6ef5', # 賴冠鏵
+    'U0772fe2a09529c65b7a7c0163a92feda', # 林俊宇
+    'Ua96931bfef5d06d91250f883559a0750', # 陳怡誠
+    'U0689f87646c44772528af8b2b4405117', # 洪梓彧
+    'Ue8f9f131ad9ce7a424ec19b1fd82b076', # 張晉源
+    'Ua59365fbb102cc87cc9781390c48c5f9', # 曾國豪
+    'U8121ae62615da918a7fa77db735dbf38', # 黃治綱
+    'Uad0875dc50aa4eb10c573534b9b1e1ac', # 鄭承祐
+    'U8ff33cad30112b82f195d530f98dcabb', # 黃治綱
+    'Ufa1ac5a64269db78b5334e794b2fd942', # STL
+    'Ucb43705a1d091f13a356938a0cc04cee', # 鄭承祐
+]
+# groups = pd.read_csv(f"https://docs.google.com/spreadsheets/d/{sheet_id}/gviz/tq?tqx=out:csv&sheet=groups")['idLINE'].to_list()
+groups = [
+    'Cf4a08527ed49eab9d2cf53a8b0309cf0', # 午餐群組
+    'Ce6071d5887fd879bc620143fce3c8382', # 測試群組
+    'C49243ad433dd8bd975340c6a83207c84', # group id test
+    'Ca9396f3333d4933d121e3d060959b5a0', # group id test 2
+    'Cdef1757ed89b5f441e4496932a0baaa0', # 午餐群組
+]
 # restaurants = pd.read_csv(f"https://docs.google.com/spreadsheets/d/{sheet_id}/gviz/tq?tqx=out:csv&sheet=restaurants")['name'].to_list()
 restaurants = [
     '大盛', '六星', '日日佳', '甲一', '皇上皇',
@@ -176,9 +199,9 @@ def handle_message(event):
         elif command == '取消':
             reply = order_lib.cancelOrder(user_id, parameters)
 
-        # 取消飲料
-        elif command == '飲取消':
-            reply = order_lib.cancelOrderDrink(user_id, parameters)
+#       # 取消飲料
+#        elif command == '飲取消':
+#            reply = order_lib.cancelOrderDrink(user_id, parameters)
 
         # 統計餐點並顯示明細表(網頁)
         elif command == '統計':
@@ -190,14 +213,14 @@ def handle_message(event):
             reply += ('\n' + order_lib.showDetailAsHtml(line_bot_api, orders, menu, domain_name))
 
 
-        # 統計飲料並顯示明細表(網頁)
-        elif command == '飲統計':
-#            foods = order_lib.countOrder(orders)
-#            reply = order_lib.printStatistic(foods, menu)
-            orders = order_lib.getOrderDrink()
-            beverage = order_lib.getBeverage()
-            menu = order_lib.getDrink(beverage)
-            reply += ('\n' + order_lib.showDetailDrinkAsHtml(line_bot_api, orders, menu, domain_name))
+#        # 統計飲料並顯示明細表(網頁)
+#        elif command == '飲統計':
+##            foods = order_lib.countOrder(orders)
+##            reply = order_lib.printStatistic(foods, menu)
+#            orders = order_lib.getOrderDrink()
+#            beverage = order_lib.getBeverage()
+#            menu = order_lib.getDrink(beverage)
+#            reply += ('\n' + order_lib.showDetailDrinkAsHtml(line_bot_api, orders, menu, domain_name))
 
         # 回覆明細表
         elif command == '明細':

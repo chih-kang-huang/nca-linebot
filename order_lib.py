@@ -9,7 +9,7 @@ import json
 import csv
 import os
 from datetime import date
-import pandas as pd
+# import pandas as pd
 
 restaurant_folder = 'data/restaurant/'
 beverage_folder= 'data/beverage/'
@@ -75,7 +75,7 @@ def printMenu(restaurant):
     return reply
 
 
-# print a beverage's menu
+## print a beverage's menu
 def printDrink(beverage):
     reply = ''
     menu = getDrink(beverage)
@@ -111,7 +111,7 @@ def addOrderDrink(user_id, orders):
         for order in orders:
             order = order.split(',')
             # validate parameter
-            if order[0].isnumeric():
+            if len(order) == 2 and order[0].isnumeric():
                 orderFile.write(user_id + ',' + order[0] + ',' + order[1] + ',' + order[2] + '\n')
             else:
                 return '請依照格式輸入'
@@ -275,16 +275,6 @@ def printDetailDrink(line_bot_api, orders, menu):
     return reply
 
 # remove unnecessary files
-#def clear():
-#    if os.path.isfile(drink_order_path) and os.path.isfile(order_path):
-#        os.remove(drink_order_path)
-#        os.remove(order_path)
-#    elif os.path.isfile(drink_order_path):
-#        os.remove(drink_order_path)
-#    elif os.path.isfile(order_path):
-#        os.remove(order_path)
-#    elif os.path.isfile(detail_path):
-#        os.remove(detail_path)
 def clear():
     if os.path.isfile(drink_order_path):
         os.remove(drink_order_path)
