@@ -138,14 +138,14 @@ def cancelOrder(user_id, cancel_orders):
 
 
 #def cancelOrderDrink(user_id, cancel_orders):
-#    orders = getOrder()
+#    orders = getOrderDrink()
 #    os.remove(drink_order_path)
 #    # if user does input parameters, cancel particular orders
 #    if cancel_orders:
 #        cancel_orders = cancel_orders.split('/')
 #        for order in orders:
 #            if order[0] != user_id:
-#                addOrder(order[0], order[1])
+#                addOrderDrink(order[0], order[1], order[2], order[3])
 #            elif order[1] not in cancel_orders:
 #                addOrder(order[0], order[1])
 #    # if user does not input parameters, cancel all the orders that match user_id
