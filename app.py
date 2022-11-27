@@ -34,8 +34,6 @@ admins = [
     'Ua96931bfef5d06d91250f883559a0750', # 陳怡誠
     'U0689f87646c44772528af8b2b4405117', # 洪梓彧
     'Ue8f9f131ad9ce7a424ec19b1fd82b076', # 張晉源
-    'Ua59365fbb102cc87cc9781390c48c5f9', # 曾國豪
-    'U8121ae62615da918a7fa77db735dbf38', # 黃治綱
     'Uad0875dc50aa4eb10c573534b9b1e1ac', # 鄭承祐
     'U8ff33cad30112b82f195d530f98dcabb', # 黃治綱
     'Ufa1ac5a64269db78b5334e794b2fd942', # STL
@@ -105,6 +103,10 @@ def callback():
 @app.route('/detail')
 def showDetail():
     return render_template('detail.html')
+
+@app.route('/detail_drink')
+def showDetailDrink():
+    return render_template('detail_drink.html')
 
 ### 主程式
 
@@ -183,7 +185,7 @@ def handle_message(event):
         reply = '清除資料'
 
     # 已經決定好餐廳才能使用的指令
-    if order_lib.getRestaurant():
+    if order_lib.getRestaurant() or order_lib.getBeverage() :
 
         # 點餐
         if command == '點':
@@ -235,13 +237,13 @@ def handle_message(event):
             beverage = order_lib.getBeverage()
             menu = order_lib.getDrink(beverage)
             reply = order_lib.printDetailDrink(line_bot_api, orders, menu)
-    #        reply += ('\n' + order_lib.showDetailDrinkAsHtml(line_bot_api, orders, menu, domain_name))
+            reply += ('\n' + order_lib.showDetailDrinkAsHtml(line_bot_api, orders, menu, domain_name))
 
         # 關閉點餐
         # 需要admin權限
         elif command == '截止' and user_id in admins:
-            order_lib.setRestaurant(' ')
-            order_lib.setBeverage(' ')
+            order_lib.setRestaurant('')
+            order_lib.setBeverage('')
 
     # 回覆訊息
     if reply:
