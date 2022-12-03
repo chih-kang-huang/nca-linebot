@@ -8,7 +8,7 @@ from linebot.models import MessageEvent, TextMessage, TextSendMessage
 
 import random
 import order_lib
-# import order
+import order
 import help
 
 app = Flask(__name__)
