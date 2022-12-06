@@ -230,7 +230,7 @@ def showDetailDrinkAsHtml(line_bot_api, orders, menu, domain_name):
             else:
                 food_price = menu[int(order[1])][3]
         with open(drink_detail_path, 'a+', encoding = 'utf-8') as detailFile:
-            detailFile.write( str(order_no) + '. ' + user_name + ' / ' + food_name + ' (' + food_size + ') ' + food_comment + ' / ' + food_price + '元\n' )
+            detailFile.write( str(order_no) + '. ' + user_name + ' / ' + food_name + ' (' + food_size + ') ' + food_comment + ' / ' + str(food_price) + '元\n' )
         order_no += 1
     return domain_name + 'detail_drink'
 
