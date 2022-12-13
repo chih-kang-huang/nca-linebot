@@ -40,6 +40,7 @@ admins = [
     'Ucb43705a1d091f13a356938a0cc04cee', # 鄭承祐
     'U90973a2215664f879f8e650b0f59fdd4', # 白泉祐
     'Ub64433aecd75d919542e90cb217ef476', # 于恆生
+    'U57ec02c4a7b960af7ade7eb89863c42b', # 張意翔
 ]
 # groups = pd.read_csv(f"https://docs.google.com/spreadsheets/d/{sheet_id}/gviz/tq?tqx=out:csv&sheet=groups")['idLINE'].to_list()
 groups = [
