@@ -13,6 +13,7 @@ markupsafe = "==2.1.1"
 werkzeug = "==2.2.2"
 line-bot-sdk = "*"
 pandas = "*"
+certifi = ">=2022.12.07"
 
 [dev-packages]
 
