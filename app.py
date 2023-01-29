@@ -55,7 +55,7 @@ restaurants = [
     '大盛', '六星', '日日佳', '甲一', '皇上皇',
     '華圓', '寶多福', '小林', '月枱', '呂媽媽',
     '佳臻', '小煮角', '中一排骨', '田園小轆', '能量小姐',
-    '開心越南', '兄弟', '榮興', '簡單', '全樂',
+    '開心越南', '兄弟', '榮興', '簡單', 
 ]
 # beverages = pd.read_csv(f"https://docs.google.com/spreadsheets/d/{sheet_id}/gviz/tq?tqx=out:csv&sheet=beverages")['name'].to_list()
 beverages = [
@@ -139,6 +139,7 @@ def handle_message(event):
     command = message[0]
     parameters = message[1]
     reply = ''
+    keyboard=''
 
     # 使用說明
     if command == '說明':
@@ -167,7 +168,16 @@ def handle_message(event):
         restaurant = parameters
         if restaurant in restaurants:
             order_lib.setRestaurant(restaurant)
-            reply = order_lib.printMenu(restaurant)
+#            reply = order_lib.printMenu(restaurant)
+#            keyboard = '1'
+            keyboard = order_lib.printMenu(restaurant)
+            line_bot_api.reply_message(
+                event.reply_token,
+                [
+                    TextSendMessage(keyboard),
+                    help.helpWithCarousel()
+                ]
+            )
             #order.createOrderForm(restaurant)
             #reply = order.getMenu(restaurant)
         else:
@@ -204,8 +214,8 @@ def handle_message(event):
             reply = order_lib.cancelOrder(user_id, parameters)
 
 #       # 取消飲料
-#        elif command == '飲取消':
-#            reply = order_lib.cancelOrderDrink(user_id, parameters)
+        elif command == '飲取消':
+            reply = order_lib.cancelOrderDrink(user_id, parameters)
 
         # 統計餐點並顯示明細表(網頁)
         elif command == '統計':
@@ -217,14 +227,14 @@ def handle_message(event):
             reply += ('\n' + order_lib.showDetailAsHtml(line_bot_api, orders, menu, domain_name))
 
 
-#        # 統計飲料並顯示明細表(網頁)
-#        elif command == '飲統計':
-##            foods = order_lib.countOrder(orders)
-##            reply = order_lib.printStatistic(foods, menu)
-#            orders = order_lib.getOrderDrink()
-#            beverage = order_lib.getBeverage()
-#            menu = order_lib.getDrink(beverage)
-#            reply += ('\n' + order_lib.showDetailDrinkAsHtml(line_bot_api, orders, menu, domain_name))
+        # 統計飲料並顯示明細表(網頁)
+        elif command == '飲統計':
+#            foods = order_lib.countOrder(orders)
+#            reply = order_lib.printStatistic(foods, menu)
+            orders = order_lib.getOrderDrink()
+            beverage = order_lib.getBeverage()
+            menu = order_lib.getDrink(beverage)
+            reply += ('\n' + order_lib.showDetailDrinkAsHtml(line_bot_api, orders, menu, domain_name))
 
         # 回覆明細表
         elif command == '明細':
@@ -251,7 +261,6 @@ def handle_message(event):
     # 回覆訊息
     if reply:
         line_bot_api.reply_message(event.reply_token, TextSendMessage(reply))
-        
 
 # main func
 if __name__ == '__main__':
