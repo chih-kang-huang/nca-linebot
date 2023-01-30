@@ -143,8 +143,8 @@ def handle_message(event):
 
     # 使用說明
     if command == '說明':
-#        reply = description
-        line_bot_api.reply_message(event.reply_token, help.helpWithCarousel())
+        reply = description
+#        line_bot_api.reply_message(event.reply_token, help.createWithFlex())
 
 
     # 列出可提供菜單的餐廳
@@ -170,13 +170,13 @@ def handle_message(event):
             order_lib.setRestaurant(restaurant)
 #            reply = order_lib.printMenu(restaurant)
 #            keyboard = '1'
-            keyboard = order_lib.printMenu(restaurant)
+#            keyboard = order_lib.printMenu(restaurant)
             line_bot_api.reply_message(
                 event.reply_token,
-                [
-                    TextSendMessage(keyboard),
-                    help.helpWithCarousel()
-                ]
+#                [
+#                    TextSendMessage(keyboard),
+                    help.createWithFlex(restaurant)
+#                ]
             )
             #order.createOrderForm(restaurant)
             #reply = order.getMenu(restaurant)
