@@ -426,122 +426,6 @@ def helpWithCarousel():
 #          }
 #    )
 
-#def helpwithFlex(restaurant) :
-#    return FlexSendMessage(
-#        alt_text='test',
-#        contents={
-#            "type": "bubble",
-#            "body": {
-#              "type": "box",
-#              "layout": "vertical",
-#              "contents": [
-#                {
-#                  "type": "text",
-#                  "text": "Brown Cafe",
-#                  "weight": "bold",
-#                  "size": "xl"
-#                },
-#                {
-#                  "type": "box",
-#                  "layout": "vertical",
-#                  "margin": "lg",
-#                  "spacing": "sm",
-#                  "contents": [
-#                    {
-#                      "type": "box",
-#                      "layout": "baseline",
-#                      "spacing": "sm",
-#                      "contents": [
-#                        {
-#                          "type": "text",
-#                          "text": "Tel:",
-#                          "color": "#aaaaaa",
-#                          "size": "sm",
-#                          "flex": 1
-#                        },
-#                        {
-#                          "type": "text",
-#                          "text": "Miraina Tower, 4-1-6 Shinjuku, Tokyo",
-#                          "wrap": True,
-#                          "color": "#666666",
-#                          "size": "sm",
-#                          "flex": 5
-#                        }
-#                      ]
-#                    }
-#                  ]
-#                }
-#              ]
-#            },
-#            "footer": {
-#              "type": "box",
-#              "layout": "vertical",
-#              "spacing": "sm",
-#              "contents": [
-#                {
-#                  "type": "box",
-#                  "layout": "horizontal",
-#                  "contents": [
-#                    {
-#                      "type": "button",
-#                      "action": {
-#                        "type": "message",
-#                        "label": "取消",
-#                        "text": "取消/"
-#                      },
-#                      "color": "#0055A4",
-#                      "style": "secondary"
-#                    },
-#                    {
-#                      "type": "button",
-#                      "action": {
-#                        "type": "message",
-#                        "label": "統計",
-#                        "text": "統計/"
-#                      },
-#                      "style": "secondary",
-#                      "color": "#FFFFFF"
-#                    },
-#                    {
-#                      "type": "button",
-#                      "action": {
-#                        "type": "message",
-#                        "label": "清除",
-#                        "text": "清除/"
-#                      },
-#                      "style": "secondary",
-#                      "color": "#EF4135"
-#                    }
-#                  ]
-#                },
-#                {
-#                  "type": "box",
-#                  "layout": "vertical",
-#                  "contents": createRestaurantFlex(restaurant)
-#                  ,
-#                  "action": {
-#                    "type": "message",
-#                    "label": "action",
-#                    "text": "hello"
-#                  },
-#                  "spacing": "5px",
-#                  "background": {
-#                    "type": "linearGradient",
-#                    "angle": "90deg",
-#                    "startColor": "#0055A4",
-#                    "endColor": "#EF4135",
-#                    "centerColor": "#FFFFFF"
-#                  },
-#                  "cornerRadius": "5px",
-#                  "paddingAll": "8px",
-#                  "borderColor": "#000000"
-#                }
-#              ],
-#              "flex": 0
-#            }
-#          }
-#    )
-
 
 def createMenuContent(restaurant):
     food_list = []
@@ -557,7 +441,6 @@ def createMenuContent(restaurant):
 #            },
 #            "style" : "secondary"
 #        }
-#        food_info = food.split(',')
         sample_food = {
             "type": "box",
             "layout": "vertical",
@@ -568,7 +451,9 @@ def createMenuContent(restaurant):
             "type": "message",
             "label": "",
             "text": ""
-            }
+            },
+            "style" : "secondary",
+#            "color": "#624d4d"
             }
             ],
             "cornerRadius": "10px",
@@ -578,13 +463,14 @@ def createMenuContent(restaurant):
             "justifyContent": "center"
         }
         food_json_string = sample_food
-        food_json_string["contents"][0]["action"]["label"] = str(food_info[0]) + '.' + food_info[1] + ' ' + food_info[2]
+        food_json_string["contents"][0]["action"]["label"] = str(food_info[0]) + '. ' + food_info[1] + ' ' + food_info[2]
         food_json_string["contents"][0]["action"]["text"] = '點/' + str(food_info[0])
         food_list.append(food_json_string)
     return food_list
 
 
 def createWithFlex(restaurant):
+    menu = order_lib.getMenu(restaurant)
     content_test ={
             "type": "bubble",
             "size": "kilo", #micro
@@ -643,10 +529,13 @@ def createWithFlex(restaurant):
                       "type": "button",
                       "action": {
                         "type": "message",
-                        "label": "取消",
-                        "text": "取消/"
+                        "label": "清除",
+                        "text": "清除/"
                       },
-                      "color": "#0055A4",
+#                      "color": "#0055A4",
+#                      "color": "#0F9D58",
+                      "color": "#8F60BF",
+                      "height": "sm",
                       "style": "secondary"
                     },
                     {
@@ -657,17 +546,22 @@ def createWithFlex(restaurant):
                         "text": "統計/"
                       },
                       "style": "secondary",
-                      "color": "#FFFFFF"
+                      "height": "sm",
+#                      "color": "#FFFFFF"
+                      "color": "#F0F1F2"
                     },
                     {
                       "type": "button",
                       "action": {
                         "type": "message",
-                        "label": "清除",
-                        "text": "清除/"
+                        "label": "取消",
+                        "text": "取消/"
                       },
                       "style": "secondary",
-                      "color": "#EF4135"
+                      "height": "sm",
+                      #"color": "#EF4135"
+#                      "color": "#F4B400"
+                      "color": "#6E8C03"
                     }
                   ]
                 },
@@ -685,9 +579,11 @@ def createWithFlex(restaurant):
                   "background": {
                     "type": "linearGradient",
                     "angle": "90deg",
-                    "startColor": "#0055A4",
-                    "endColor": "#EF4135",
-                    "centerColor": "#FFFFFF"
+#                   "startColor": "#0055A4",
+                    "startColor": "#8F60BF",
+#                   "endColor": "#EF4135",
+                    "endColor": "#83A603",
+                    "centerColor": "#F0F1F2"
                   },
                   "cornerRadius": "5px",
                   "paddingAll": "8px",
@@ -698,9 +594,11 @@ def createWithFlex(restaurant):
             }
           }
     content_test["footer"]["contents"][1]["contents"] = createMenuContent(restaurant)
+    content_test["body"]["contents"][0]["text"] = str(menu[0][0])
+    content_test["body"]["contents"][1]["contents"][0]["contents"][1]["text"] = str(menu[0][1]) + " 來文書科繳錢"
     #content_test["footer"]["contents"][1] = { "type" : "text", "text" : "hello" }
     return FlexSendMessage(
-        alt_text='test',
+        alt_text='Carte de Menu',
         contents= content_test
     )
 
