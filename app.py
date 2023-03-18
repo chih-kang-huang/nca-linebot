@@ -55,7 +55,7 @@ restaurants = [
     '大盛', '六星', '日日佳', '甲一', '皇上皇',
     '華圓', '寶多福', '小林', '月枱', '呂媽媽',
     '佳臻', '小煮角', '中一排骨', '田園小轆', '能量小姐',
-    '開心越南', '兄弟', '榮興', '簡單', 
+    '開心越南', '兄弟', '榮興', '簡單', '好味'
 ]
 # beverages = pd.read_csv(f"https://docs.google.com/spreadsheets/d/{sheet_id}/gviz/tq?tqx=out:csv&sheet=beverages")['name'].to_list()
 beverages = [
@@ -218,7 +218,7 @@ def handle_message(event):
             reply = order_lib.cancelOrderDrink(user_id, parameters)
 
         # 統計餐點並顯示明細表(網頁)
-        elif command == '統計':
+        elif command == '統計' and user_id in admins:
             orders = order_lib.getOrder()
             restaurant = order_lib.getRestaurant()
             menu = order_lib.getMenu(restaurant)
