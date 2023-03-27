@@ -457,8 +457,8 @@ def createMenuContent(restaurant):
             }
             ],
             "cornerRadius": "10px",
-            "borderColor": "#000000",
-            "borderWidth": "3px",
+            "borderColor": "#81D8D0",
+            "borderWidth": "2px",
             "height": "30px",
             "justifyContent": "center"
         }
@@ -529,39 +529,63 @@ def createWithFlex(restaurant):
                       "type": "button",
                       "action": {
                         "type": "message",
-                        "label": "清除",
+                        "label": "清除✂",
                         "text": "清除/"
                       },
 #                      "color": "#0055A4",
-#                      "color": "#0F9D58",
-                      "color": "#8F60BF",
+                      "color": "#0F9D58",
+#                      "color": "#8F60BF",
                       "height": "sm",
                       "style": "secondary"
                     },
+#                    {
+#                      "type": "button",
+#                      "action": {
+#                        "type": "message",
+#                        "label": "重新點單",
+#                        "text": "取消/"
+#                      },
+#                      "style": "secondary",
+#                      "height": "sm",
+#                      "color": "#EF4135"
+##                      "color": "#F4B400"
+##                      "color": "#6E8C03"
+#                    },
                     {
                       "type": "button",
                       "action": {
                         "type": "message",
-                        "label": "統計",
+                        "label": "統計✎",
                         "text": "統計/"
+#                          "type": "postback",
+#                          "label": "統計✎",
+#                          "data": "統計/"
                       },
                       "style": "secondary",
+                      "margin": "50px",
                       "height": "sm",
 #                      "color": "#FFFFFF"
-                      "color": "#F0F1F2"
-                    },
+#                      "color": "#F0F1F2"
+                      "color": "#F4B400"
+                    }
+                  ]
+                },
+                {
+                  "type": "box",
+                  "layout": "horizontal",
+                  "contents": [
                     {
                       "type": "button",
                       "action": {
                         "type": "message",
-                        "label": "取消",
+                        "label": "取消訂餐",
                         "text": "取消/"
                       },
                       "style": "secondary",
                       "height": "sm",
-                      #"color": "#EF4135"
+                      "color": "#EF4135"
 #                      "color": "#F4B400"
-                      "color": "#6E8C03"
+#                      "color": "#6E8C03"
                     }
                   ]
                 },
@@ -580,9 +604,11 @@ def createWithFlex(restaurant):
                     "type": "linearGradient",
                     "angle": "90deg",
 #                   "startColor": "#0055A4",
-                    "startColor": "#8F60BF",
+#                    "startColor": "#8F60BF",
+                    "startColor": "#0F9D58",
 #                   "endColor": "#EF4135",
-                    "endColor": "#83A603",
+#                    "endColor": "#83A603",
+                    "endColor": "#F4B400",
                     "centerColor": "#F0F1F2"
                   },
                   "cornerRadius": "5px",
@@ -593,7 +619,7 @@ def createWithFlex(restaurant):
               "flex": 0
             }
           }
-    content_test["footer"]["contents"][1]["contents"] = createMenuContent(restaurant)
+    content_test["footer"]["contents"][2]["contents"] = createMenuContent(restaurant)
     content_test["body"]["contents"][0]["text"] = str(menu[0][0])
     content_test["body"]["contents"][1]["contents"][0]["contents"][1]["text"] = str(menu[0][1]) + " 來文書科繳錢"
     #content_test["footer"]["contents"][1] = { "type" : "text", "text" : "hello" }

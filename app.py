@@ -28,19 +28,19 @@ sheet_id = os.environ.get('SHEET_ID')
 admins = [
     'Uefa7580b75912cf5cbd1be6dba8dafbe', # 洪仲杰
     # 'U75851bf4cd33d189464170b50df30ee8', # 陳宜祥
-    'U45eac4b2d3598d5bb9ee33cee0518d45', # 蕭崇聖
-    'U3ff60662d9e6b90835aa52fa8cfb6ef5', # 賴冠鏵
-    'U0772fe2a09529c65b7a7c0163a92feda', # 林俊宇
-    'Ua96931bfef5d06d91250f883559a0750', # 陳怡誠
-    'U0689f87646c44772528af8b2b4405117', # 洪梓彧
-    'Ue8f9f131ad9ce7a424ec19b1fd82b076', # 張晉源
+    #'U45eac4b2d3598d5bb9ee33cee0518d45', # 蕭崇聖
+    #'U3ff60662d9e6b90835aa52fa8cfb6ef5', # 賴冠鏵
+    #'U0772fe2a09529c65b7a7c0163a92feda', # 林俊宇
+    #'Ua96931bfef5d06d91250f883559a0750', # 陳怡誠
+    #'U0689f87646c44772528af8b2b4405117', # 洪梓彧
+    #'Ue8f9f131ad9ce7a424ec19b1fd82b076', # 張晉源
     'Uad0875dc50aa4eb10c573534b9b1e1ac', # 鄭承祐
     'U8ff33cad30112b82f195d530f98dcabb', # 黃治綱
     'Ufa1ac5a64269db78b5334e794b2fd942', # STL
     'Ucb43705a1d091f13a356938a0cc04cee', # 鄭承祐
     'U90973a2215664f879f8e650b0f59fdd4', # 白泉祐
     'Ub64433aecd75d919542e90cb217ef476', # 于恆生
-    'U57ec02c4a7b960af7ade7eb89863c42b', # 張意翔
+    'Ucb47e88904a75859327afb509d7c3db3', # 袁子晉
 ]
 # groups = pd.read_csv(f"https://docs.google.com/spreadsheets/d/{sheet_id}/gviz/tq?tqx=out:csv&sheet=groups")['idLINE'].to_list()
 groups = [
@@ -55,7 +55,7 @@ restaurants = [
     '大盛', '六星', '日日佳', '甲一', '皇上皇',
     '華圓', '寶多福', '小林', '月枱', '呂媽媽',
     '佳臻', '小煮角', '中一排骨', '田園小轆', '能量小姐',
-    '開心越南', '兄弟', '榮興', '簡單', '好味'
+    '開心越南', '兄弟', '榮興', '簡單', '好味', '華園'
 ]
 # beverages = pd.read_csv(f"https://docs.google.com/spreadsheets/d/{sheet_id}/gviz/tq?tqx=out:csv&sheet=beverages")['name'].to_list()
 beverages = [

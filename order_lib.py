@@ -95,6 +95,7 @@ def checkValidity(order):
 # add order(s) into order.csv
 def addOrder(user_id, orders):
     menu = getMenu(getRestaurant())
+    reply = ''
     orders = orders.split('/')
     with open(order_path, 'a+', encoding = 'utf-8') as orderFile:
         for order in orders:
@@ -102,11 +103,13 @@ def addOrder(user_id, orders):
             if order.isnumeric():
                 if int(order) > 0 and int(order) < len(menu):
                     orderFile.write(user_id + ',' + order + '\n')
+                    food_name = menu[int(order)][1]
+                    reply += '收到，一份' + str(food_name) 
+                    return reply
                 else: 
-                    return '品項不在菜單'
+                    return '品項不在菜單，請重新輸入'
             else:
                 return '請依照格式輸入'
-    return '收到'
 
 
 def addOrderDrink(user_id, orders):
