@@ -41,6 +41,7 @@ admins = [
     'U90973a2215664f879f8e650b0f59fdd4', # 白泉祐
     'Ub64433aecd75d919542e90cb217ef476', # 于恆生
     'Ucb47e88904a75859327afb509d7c3db3', # 袁子晉
+    'U3944ee94a94e550dca3d4c5eaec8edc7', # 李俊樑
 ]
 # groups = pd.read_csv(f"https://docs.google.com/spreadsheets/d/{sheet_id}/gviz/tq?tqx=out:csv&sheet=groups")['idLINE'].to_list()
 groups = [
@@ -55,7 +56,7 @@ restaurants = [
     '大盛', '六星', '日日佳', '甲一', '皇上皇',
     '華圓', '寶多福', '小林', '月枱', '呂媽媽',
     '佳臻', '小煮角', '中一排骨', '田園小轆', '能量小姐',
-    '開心越南', '兄弟', '榮興', '簡單', '好味', '華園',
+    '開心越南', '兄弟', '榮興', '簡單', '好味', 
     '全樂', '高又鮮', '簡單夏',
 ]
 # beverages = pd.read_csv(f"https://docs.google.com/spreadsheets/d/{sheet_id}/gviz/tq?tqx=out:csv&sheet=beverages")['name'].to_list()

@@ -504,7 +504,7 @@ def createWithFlex(restaurant):
                         },
                         {
                           "type": "text",
-                          "text": "來文書科繳錢",
+                          "text": "來研考科繳錢",
                           "wrap": True,
                           "color": "#666666",
                           "size": "sm",
