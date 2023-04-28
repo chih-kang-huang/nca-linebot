@@ -621,7 +621,7 @@ def createWithFlex(restaurant):
           }
     content_test["footer"]["contents"][1]["contents"] = createMenuContent(restaurant)
     content_test["body"]["contents"][0]["text"] = str(menu[0][0])
-    content_test["body"]["contents"][1]["contents"][0]["contents"][1]["text"] = str(menu[0][1]) + " 來文書科繳錢"
+    content_test["body"]["contents"][1]["contents"][0]["contents"][1]["text"] = str(menu[0][1]) + " 來研考科繳錢"
     #content_test["footer"]["contents"][1] = { "type" : "text", "text" : "hello" }
     return FlexSendMessage(
         alt_text='Carte de Menu',
