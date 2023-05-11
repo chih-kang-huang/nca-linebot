@@ -146,8 +146,8 @@ def handle_message(event):
 
     # 使用說明
     if command == '說明':
-        reply = description
-#        line_bot_api.reply_message(event.reply_token, help.createWithFlex())
+        #reply = description
+        line_bot_api.reply_message(event.reply_token, help.createWithFlex())
 
 
     # 列出可提供菜單的餐廳
