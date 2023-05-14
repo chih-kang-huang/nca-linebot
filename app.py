@@ -58,7 +58,7 @@ restaurants = [
     '華圓', '寶多福', '小林', '月枱', '呂媽媽',
     '佳臻', '小煮角', '中一排骨', '田園小轆', '能量小姐',
     '開心越南', '兄弟', '榮興', '簡單', '好味', 
-    '全樂', '高又鮮', '簡單夏',
+    '全樂', '高又鮮', '簡單夏', '三號月台'
 ]
 # beverages = pd.read_csv(f"https://docs.google.com/spreadsheets/d/{sheet_id}/gviz/tq?tqx=out:csv&sheet=beverages")['name'].to_list()
 beverages = [
