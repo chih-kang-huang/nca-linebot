@@ -1,18 +1,18 @@
-# NCU-Line-bot
+# NCA-Line-bot
 
-NCU Line Bot. A fork from github.com/jackyh1999/line_bot 
+NCA Line Bot. A fork from github.com/jackyh1999/line_bot 
 
 ## Useful commands for deployment
 - ```flyctl launch``` launches the new app.
 - ```flyctl deploy``` to deploy the app.
-- ```flyctl logs``` is useful for debugging
+- ```flyctl logs```  useful for debugging
 
-# Screts
+# Secrets
 
 ```
 flyctl secrets set LINE_CHANNEL_SECRET=xxxxx LINE_CHANNEL_ACCESS_TOKEN=yyyyy SHEET_ID=zzzzzz
 ```
 You can set several secret environment variables at once and it will automatically deploy after the execution.
 
-## Data
+ --- ## Data
 <!---Read only data are store temporarily in a [Google Sheet](https://docs.google.com/spreadsheets/d/1OZaZYPPFPVo5EuThuyjS3STR8nMf7peSjK673_bPDHE/edit#gid=0) --->
