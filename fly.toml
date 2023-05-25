@@ -1,8 +1,12 @@
-# fly.toml file generated for ncu-line-bot on 2022-11-21T01:25:40+08:00
+# fly.toml app configuration file generated for nca-linebot on 2023-05-25T11:37:16+08:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
 
-app = "ncu-line-bot"
+app = "nca-linebot"
 kill_signal = "SIGINT"
 kill_timeout = 5
+primary_region = "hkg"
 processes = []
 
 [build]
