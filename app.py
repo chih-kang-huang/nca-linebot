@@ -8,7 +8,7 @@ from linebot.models import MessageEvent, TextMessage, TextSendMessage
 
 import random
 import order_lib
-import order
+# import order
 import help
 
 app = Flask(__name__)
@@ -148,7 +148,7 @@ def handle_message(event):
 
     # 決定要吃的餐廳
     # 需要admin權限
-     elif command == '吃' and user_id in admins:
+    elif command == '吃' and user_id in admins:
    # elif command == '吃':
         restaurant = parameters
         if restaurant in restaurants:
