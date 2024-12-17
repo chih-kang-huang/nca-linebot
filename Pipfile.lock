@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "5d44514dba6fa4c2c1538cbd95838a39ed8f3c2bd5e58a4fecc497a7cd6a833d"
+            "sha256": "5c77f2be4b96802c3fa9dc7139b3f33a3eba87118c73fb900fad07ba5cdb5efc"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -336,6 +336,7 @@
                 "sha256:fc7b548b17d238737688817ab67deebb30e8073c95749d55538ed473130ec0c7"
             ],
             "index": "pypi",
+            "markers": "python_version >= '3.7'",
             "version": "==2.1.1"
         },
         "multidict": {
@@ -534,11 +535,12 @@
         },
         "werkzeug": {
             "hashes": [
-                "sha256:7ea2d48322cc7c0f8b3a215ed73eabd7b5d75d0b50e31ab006286ccff9e00b8f",
-                "sha256:f979ab81f58d7318e064e99c4506445d60135ac5cd2e177a2de0089bfd4c9bd5"
+                "sha256:1bc0c2310d2fbb07b1dd1105eba2f7af72f322e1e455f2f93c993bee8c8a5f17",
+                "sha256:a8dd59d4de28ca70471a34cba79bed5f7ef2e036a76b3ab0835474246eb41f8d"
             ],
             "index": "pypi",
-            "version": "==2.2.2"
+            "markers": "python_version >= '3.8'",
+            "version": "==3.0.6"
         },
         "yarl": {
             "hashes": [
