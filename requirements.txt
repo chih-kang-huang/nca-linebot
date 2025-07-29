@@ -6,7 +6,7 @@
 #
 
 -i https://pypi.org/simple
-aiohttp==3.10.11; python_version >= '3.6'
+aiohttp==3.12.14; python_version >= '3.6'
 aiosignal==1.2.0; python_version >= '3.6'
 async-timeout==4.0.2; python_version >= '3.6'
 attrs==22.1.0; python_version >= '3.5'
